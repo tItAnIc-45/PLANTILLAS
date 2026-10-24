@@ -1,0 +1,29 @@
+.cabecera {
+  position: sticky; top: 0; z-index: 20;
+  background: var(--marino-800);
+  border-bottom: 1px solid rgb(220 188 125 / 14%);
+  animation: aparece var(--m-entrada) var(--sale) both;
+}
+.cabecera--fija { background: var(--marino-900); }
+.cabecera__fila { display: flex; align-items: center; justify-content: space-between; min-height: 4.5rem; gap: 1rem; }
+.cabecera__nav { display: flex; align-items: center; gap: 1.5rem; }
+.cabecera__nav > a:not(.btn) { color: #c6d3dc; text-decoration: none; font-size: var(--t-sec); min-height: 44px; display: inline-flex; align-items: center; }
+.cabecera__nav > a:not(.btn):hover { color: #fff; }
+.cabecera__nav { gap: 0.75rem 1rem; }
+.cabecera__tema {
+  min-height: 44px; padding: 0 1rem; font: 500 var(--t-sec)/1 var(--fuente);
+  color: #fff; background: rgb(255 255 255 / 8%);
+  border: 1px solid rgb(255 255 255 / 22%); border-radius: 0.5rem; cursor: pointer;
+  transition: border-color var(--m-150) var(--sale), background-color var(--m-150) var(--sale);
+}
+.cabecera__tema { display: inline-flex; align-items: center; gap: 0.5rem; }
+.cabecera__tema:hover { border-color: var(--oro); background: rgb(255 255 255 / 14%); }
+
+@media (max-width: 767.98px) {
+  .cabecera__nav > a:not(.btn), .solo-escritorio { display: none; }
+  .cabecera .btn { padding-inline: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cabecera { animation: aparece var(--m-100) ease both; animation-delay: 0s; }
+}

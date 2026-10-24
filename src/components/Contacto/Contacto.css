@@ -1,0 +1,106 @@
+.contacto { background: var(--marino-900); color: #fff; padding-block: clamp(2rem, 6vw, 4rem); }
+.contacto__panel {
+  padding: clamp(1.25rem, 4vw, 3rem);
+  background: linear-gradient(160deg, #0f2535 0%, #0a1c28 55%, #0c2231 100%);
+  border: 1px solid rgb(220 188 125 / 38%); border-radius: 1.75rem;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 5%), 0 24px 60px rgb(0 0 0 / 30%);
+}
+.contacto__fila { display: grid; gap: 2.5rem; align-items: start; }
+@media (min-width: 62rem) { .contacto__fila { grid-template-columns: 1fr 1.05fr; gap: 3.5rem; } }
+
+.contacto__etiqueta { display: flex; align-items: center; gap: 0.75rem; color: var(--oro); font-size: var(--t-meta); font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; margin-bottom: 1.25rem; }
+.contacto__etiqueta::before { content: ''; width: 1.5rem; height: 1px; background: var(--oro); }
+.contacto h2 { font: 600 clamp(2.25rem, 5vw, 3.5rem)/1.08 var(--fuente); letter-spacing: -0.02em; margin-bottom: 1.5rem; text-wrap: balance; color: #e8eef2; }
+.contacto h2 em { font-family: var(--fuente-titulo); font-weight: 400; color: var(--oro); }
+.contacto__texto > p:not(.contacto__etiqueta) { color: #c6d3dc; max-width: 26rem; }
+
+/* Maqueta de conversación de WhatsApp: refleja la solución elegida en el formulario */
+.chat { margin-top: 2rem; max-width: 24rem; border: 1px solid rgb(255 255 255 / 12%); border-radius: 1.25rem; overflow: hidden; background: #0b1e2b; box-shadow: 0 16px 40px rgb(0 0 0 / 35%); }
+.chat__cabeza { display: flex; align-items: center; gap: 0.75rem; padding: 0.75rem 1rem; background: #123247; }
+.chat__logo { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border: 1px solid var(--oro); border-radius: 50%; }
+.chat__cabeza b { font-size: var(--t-meta); letter-spacing: 0.14em; }
+.chat__linea { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #2ecc71; }
+.chat__cuerpo { display: grid; gap: 0.625rem; padding: 1.25rem 1rem 1rem; min-height: 11.5rem; align-content: start; }
+.chat__burbuja { max-width: 85%; padding: 0.625rem 0.875rem; font-size: var(--t-meta); line-height: 1.45; border-radius: 0.75rem; overflow-wrap: anywhere; }
+.chat__burbuja p { margin: 0; font-weight: 500; }
+.chat__burbuja--yo { justify-self: end; background: #0f6b4d; border-top-right-radius: 0.25rem; }
+.chat__burbuja--ellos { justify-self: start; background: #17394f; border-top-left-radius: 0.25rem; }
+.chat__hora { display: block; text-align: right; font-size: 0.65rem; color: #9fb4c3; margin-top: 0.125rem; }
+.chat__escribe { justify-self: start; display: flex; gap: 0.25rem; padding: 0.7rem 0.875rem; background: #17394f; border-radius: 0.75rem; border-top-left-radius: 0.25rem; }
+.chat__escribe i { width: 0.375rem; height: 0.375rem; border-radius: 50%; background: #9fb4c3; }
+
+/* Conversación en bucle de 9 s: tú escribes, TUPLUS "escribe" y responde.
+   El indicador de escritura y la respuesta comparten la misma fila de la rejilla. */
+.chat__cuerpo { grid-template-rows: auto auto; }
+.chat__escribe, .chat__burbuja--ellos { grid-row: 2; grid-column: 1; }
+.chat__linea { animation: chat-latido 2s ease-in-out infinite; }
+.chat__burbuja--yo { animation: chat-yo 9s var(--sale) infinite; }
+.chat__escribe { animation: chat-escribe 9s var(--sale) infinite; }
+.chat__escribe i { animation: chat-punto 0.9s ease-in-out infinite; }
+.chat__escribe i:nth-child(2) { animation-delay: 0.15s; }
+.chat__escribe i:nth-child(3) { animation-delay: 0.3s; }
+.chat__burbuja--ellos { animation: chat-ellos 9s var(--sale) infinite; }
+.chat__hora { animation: chat-visto 9s linear infinite; }
+.chat__pie b { animation: chat-envia 9s ease infinite; }
+@keyframes chat-latido { 50% { opacity: 0.35; } }
+@keyframes chat-punto { 0%, 60%, 100% { transform: translateY(0); opacity: 0.5; } 30% { transform: translateY(-4px); opacity: 1; } }
+@keyframes chat-yo { 0%, 4% { opacity: 0; transform: translateY(10px) scale(0.96); } 10%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes chat-escribe { 0%, 22% { opacity: 0; transform: translateY(8px); } 26%, 44% { opacity: 1; transform: none; } 46%, 100% { opacity: 0; } }
+@keyframes chat-ellos { 0%, 45% { opacity: 0; transform: translateY(10px) scale(0.96); } 52%, 94% { opacity: 1; transform: none; } 100% { opacity: 0; } }
+@keyframes chat-visto { 0%, 20% { color: #9fb4c3; } 30%, 100% { color: #5cc8ff; } }
+@keyframes chat-envia { 0%, 2%, 8%, 100% { transform: scale(1); } 5% { transform: scale(0.82); } }
+@media (prefers-reduced-motion: reduce) {
+  .chat, .chat * { animation: none !important; }
+  .chat__escribe { display: none; }
+  .chat__hora { color: #5cc8ff; }
+}
+.chat__pie { display: flex; align-items: center; gap: 0.5rem; padding: 0.625rem 0.75rem; background: #0f2535; }
+.chat__pie span { flex: 1; height: 1.75rem; border-radius: 99px; background: rgb(255 255 255 / 8%); }
+.chat__pie b { display: grid; place-items: center; width: 1.9rem; height: 1.9rem; border-radius: 50%; background: var(--oro); color: var(--marino-900); font-size: var(--t-meta); }
+
+.contacto__directo { display: inline-flex; align-items: center; min-height: 44px; margin-top: 1.5rem; padding: 0 1rem; color: #fff; font-size: var(--t-meta); font-weight: 600; text-decoration: none; border: 1px solid rgb(220 188 125 / 55%); border-radius: 999px; transition: background-color var(--m-150) var(--sale); }
+.contacto__directo:hover { background: rgb(220 188 125 / 14%); }
+.contacto__pills { list-style: none; margin: 0.75rem 0 0; padding: 0; display: grid; gap: 0.625rem; justify-items: start; }
+.contacto__pills li { display: inline-flex; align-items: center; gap: 0.625rem; padding: 0.5rem 1rem; font-size: var(--t-sec); color: #dbe5eb; border: 1px solid rgb(255 255 255 / 14%); border-radius: 999px; background: rgb(255 255 255 / 4%); }
+.contacto__pills li::before { content: ''; width: 0.4rem; height: 0.4rem; border-radius: 50%; background: var(--oro); flex-shrink: 0; }
+
+/* Tarjeta del formulario: siempre oscura, con o sin tema oscuro */
+.contacto__form {
+  display: grid; gap: 1rem; grid-template-columns: 1fr;
+  padding: clamp(1.25rem, 3vw, 2rem); color: #e8eef2;
+  background: rgb(255 255 255 / 3%); border: 1px solid rgb(255 255 255 / 14%); border-radius: 1.25rem;
+}
+@media (min-width: 40rem) { .contacto__form { grid-template-columns: 1fr 1fr; } }
+.contacto__form > h3, .contacto__raya, .contacto__intro, .campo--ancho, .contacto__acepta, .contacto__enviar, .contacto__aviso { grid-column: 1 / -1; }
+.contacto__raya { width: 1.75rem; height: 2px; background: var(--oro); }
+.contacto__form h3 { font: 600 1.375rem/1.2 var(--fuente); margin-top: -0.5rem; }
+.contacto__intro { color: #a9b9c5; font-size: var(--t-meta); margin-top: -0.75rem; }
+
+.campo { display: grid; gap: 0.5rem; align-content: start; }
+.campo label { font-size: var(--t-sec); font-weight: 600; }
+.campo small { font-size: var(--t-meta); color: #a9b9c5; }
+.campo input, .campo select, .campo textarea {
+  width: 100%; min-height: 44px; padding: 0.625rem 0.75rem;
+  font: 400 var(--t-meta)/1.4 var(--fuente); color: #fff;
+  background: rgb(255 255 255 / 7%); border: 1px solid rgb(255 255 255 / 16%); border-radius: 0.625rem;
+  transition: border-color var(--m-150) var(--sale), background-color var(--m-150) var(--sale);
+}
+.campo select { font-weight: 600; cursor: pointer; }
+.campo select { color-scheme: dark; }
+.campo select option { color: #e8eef2; background: #0f2535; }
+.campo textarea { resize: vertical; min-height: 6rem; }
+.campo input::placeholder, .campo textarea::placeholder { color: #93a5b2; }
+.campo input:hover, .campo select:hover, .campo textarea:hover { border-color: rgb(220 188 125 / 60%); }
+.campo input:focus, .campo select:focus, .campo textarea:focus { border-color: var(--oro); background: rgb(255 255 255 / 10%); }
+
+.contacto__acepta { display: flex; gap: 0.75rem; align-items: flex-start; font-size: var(--t-sec); color: #dbe5eb; }
+.contacto__acepta input { width: 1.125rem; height: 1.125rem; margin-top: 0.2rem; accent-color: var(--oro); flex-shrink: 0; }
+.contacto__acepta a { color: #fff; text-underline-offset: 3px; }
+.contacto__form .contacto__enviar {
+  width: 100%; min-height: 52px; font-weight: 600; border-radius: 999px;
+  color: var(--marino-900); background: linear-gradient(90deg, #efd596, #c8a354 70%, #b0812f);
+  box-shadow: 0 8px 24px rgb(200 163 84 / 28%);
+  transition: filter var(--m-150) var(--sale), box-shadow var(--m-150) var(--sale);
+}
+.contacto__form .contacto__enviar:hover { filter: brightness(1.06); box-shadow: 0 10px 28px rgb(200 163 84 / 40%); }
+.contacto__aviso { text-align: center; font-size: var(--t-sec); color: #c6d3dc; }

@@ -1,0 +1,97 @@
+/*
+ * Intro en cada carga. Solo transform y opacity.
+ *  0.00–0.70  línea dorada se dibuja y las órbitas se trazan
+ *  0.20–1.20  colibrí llega volando en arco y queda suspendido en órbita
+ *  0.70–1.50  letras de TUPLUS suben una a una (60 ms entre letras)
+ *  1.45–1.95  "PLANTILLAS" y lema aparecen
+ *  2.30       el telón se abre (arriba sube, abajo baja) y la página entra
+ */
+html.intro-activa { overflow: hidden; }
+
+/* Mientras la intro está activa, la entrada de la página espera su turno. */
+html.intro-activa :is(.cabecera, .hero__lead, .hero__acciones, .linea > span, .orbita, .colibri) {
+  animation-play-state: paused;
+}
+
+.intro { position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; --telon: cubic-bezier(0.77, 0, 0.175, 1); }
+
+.intro__panel {
+  position: absolute; left: 0; right: 0; height: 50.5%;
+  background: var(--marino-900);
+  transition: transform 700ms var(--telon);
+  will-change: transform;
+}
+.intro__panel--arriba { top: 0; background: linear-gradient(#0a1c28, #0c2231); }
+.intro__panel--abajo { bottom: 0; background: linear-gradient(#0c2231, #0a1c28); }
+.intro--salir .intro__panel--arriba { transform: translateY(-100%); }
+.intro--salir .intro__panel--abajo { transform: translateY(100%); }
+
+.intro__centro { position: relative; z-index: 1; display: grid; justify-items: center; gap: 1.1rem; transition: opacity 220ms var(--sale); }
+.intro--salir .intro__centro { opacity: 0; }
+
+/* Estado inicial oculto; las animaciones corren con .intro--corre. */
+.intro__linea {
+  position: absolute; top: 50%; left: 50%; width: min(70vw, 28rem); height: 1px; margin-left: calc(min(70vw, 28rem) / -2);
+  background: linear-gradient(90deg, transparent, var(--oro), transparent);
+  transform: scaleX(0);
+}
+.intro--corre .intro__linea { animation: intro-linea 700ms var(--sale) 0ms forwards; }
+
+/* Escena del colibrí: órbitas que giran lento + vuelo en arco + aleteo. */
+.intro__escena { position: relative; display: grid; place-items: center; width: 13rem; height: 11rem; margin-block: -1rem; }
+.intro__orbitas { position: absolute; width: 15rem; height: 15rem; left: 50%; top: 50%; margin: -7.5rem 0 0 -7.5rem; overflow: visible; animation: intro-gira 18s linear infinite; }
+.intro__orbita { fill: none; stroke: var(--oro); stroke-width: 1; transform-origin: 200px 200px; opacity: 0; }
+.intro__orbita--1 { stroke-opacity: 0.4; }
+.intro__orbita--2 { stroke-opacity: 0.2; stroke-dasharray: 4 6; }
+.intro--corre .intro__orbita--1 { animation: intro-orbita 700ms var(--sale) 150ms forwards; }
+.intro--corre .intro__orbita--2 { animation: intro-orbita 700ms var(--sale) 300ms forwards; }
+
+.intro__vuelo { position: relative; display: block; opacity: 0; transform: translate(-150px, 80px) rotate(-14deg) scale(0.85); }
+.intro--corre .intro__vuelo { animation: intro-vuelo 1000ms var(--sale) 200ms forwards; }
+.intro__flota { display: block; }
+.intro--corre .intro__flota { animation: intro-deriva 3.2s ease-in-out 1200ms infinite; }
+.intro__colibri {
+  display: block; width: clamp(6rem, 18vw, 8.25rem); height: auto; transform-origin: 55% 65%;
+  filter: drop-shadow(0 12px 24px rgb(0 0 0 / 35%));
+}
+.intro--corre .intro__colibri { animation: intro-aletea 170ms ease-in-out 900ms infinite; }
+
+.intro__marca { margin: 0; display: flex; font: 600 clamp(2.25rem, 8vw, 3.5rem)/1 var(--fuente); letter-spacing: 0.18em; color: #fff; padding-left: 0.18em; }
+.intro__letra { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.intro__letra > span { display: block; transform: translateY(105%); }
+.intro--corre .intro__letra > span { animation: intro-letra 560ms var(--sale) calc(700ms + var(--i) * 60ms) forwards; }
+.intro__punto { font-style: normal; color: var(--oro); opacity: 0; }
+.intro--corre .intro__punto { animation: intro-aparece 300ms var(--sale) 1350ms forwards; }
+
+/* Distingue esta galería del sitio principal de TUPLUS. */
+.intro__sub {
+  margin: -0.35rem 0 0; display: flex; align-items: center; gap: 0.9rem;
+  font: 600 var(--t-sec)/1 var(--fuente); letter-spacing: 0.5em; padding-left: 0.5em; text-transform: uppercase; color: var(--oro);
+  opacity: 0; transform: translateY(8px);
+}
+.intro--corre .intro__sub { animation: intro-sube 500ms var(--sale) 1450ms forwards; }
+.intro__sub::before, .intro__sub::after { content: ''; width: 2.25rem; height: 1px; background: var(--oro); opacity: 0.45; }
+.intro__lema { margin: 0; font: 400 var(--t-sec)/1.4 var(--fuente); letter-spacing: 0.22em; text-transform: uppercase; color: #c6d3dc; opacity: 0; }
+.intro--corre .intro__lema { animation: intro-aparece 500ms var(--sale) 1700ms forwards; }
+
+@keyframes intro-linea { to { transform: scaleX(1); } }
+@keyframes intro-orbita { from { transform: scale(0.8); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes intro-gira { to { transform: rotate(360deg); } }
+@keyframes intro-vuelo {
+  60% { opacity: 1; transform: translate(10px, -14px) rotate(3deg) scale(1.02); }
+  100% { opacity: 1; transform: none; }
+}
+/* Deriva suave en elipse: el colibrí suspendido en el aire. */
+@keyframes intro-deriva {
+  0%, 100% { transform: translate(0, 0) rotate(0); }
+  25% { transform: translate(7px, -8px) rotate(2deg); }
+  50% { transform: translate(0, -13px) rotate(0); }
+  75% { transform: translate(-7px, -6px) rotate(-2deg); }
+}
+@keyframes intro-aletea {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.03, 0.965); }
+}
+@keyframes intro-letra { to { transform: none; } }
+@keyframes intro-aparece { to { opacity: 1; } }
+@keyframes intro-sube { to { opacity: 1; transform: none; } }

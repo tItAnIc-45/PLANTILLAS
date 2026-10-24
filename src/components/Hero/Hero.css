@@ -1,0 +1,29 @@
+.hero { background: radial-gradient(ellipse at 78% 40%, #1b4058 0%, var(--marino-800) 55%, var(--marino-900) 100%); color: #fff; overflow: hidden; }
+.hero__fila { display: grid; grid-template-columns: 1.1fr 0.9fr; align-items: center; gap: 2rem; padding-block: clamp(3rem, 8vw, 6.5rem); }
+.hero h1 { font: 400 clamp(2.5rem, 6vw, 4.5rem)/1.1 var(--fuente-titulo); letter-spacing: -0.02em; color: #fff; }
+.linea { display: block; overflow: hidden; padding-bottom: 0.1em; }
+.linea > span { display: block; animation: sube var(--m-entrada) var(--sale) both; }
+.linea:nth-child(1) > span { animation-delay: 150ms; }
+.linea:nth-child(2) > span { animation-delay: 300ms; color: var(--oro); }
+.hero__lead { margin-top: 1.5rem; max-width: 34rem; color: #c6d3dc; animation: aparece var(--m-entrada) var(--sale) 550ms both; }
+.hero__acciones { margin-top: 2rem; animation: aparece var(--m-entrada) var(--sale) 700ms both; }
+
+.hero__escena { position: relative; display: grid; place-items: center; aspect-ratio: 1; max-width: 26rem; width: 100%; justify-self: center; }
+.orbitas { position: absolute; inset: 0; width: 100%; height: 100%; }
+.orbita { fill: none; stroke: var(--oro); transform-origin: 200px 200px; animation: orbita var(--m-entrada) var(--sale) both; }
+.orbita--1 { stroke-opacity: 0.35; stroke-width: 1; animation-delay: 200ms; }
+.orbita--2 { stroke-opacity: 0.18; stroke-width: 1; stroke-dasharray: 4 6; animation-delay: 350ms; }
+.colibri { position: relative; width: 78%; height: auto; filter: drop-shadow(0 12px 20px rgb(0 0 0 / 25%)); animation: vuela 900ms var(--sale) 100ms both; }
+
+@keyframes sube { from { transform: translateY(100%); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes orbita { from { transform: scale(0.8); opacity: 0; } to { transform: none; opacity: 1; } }
+@keyframes vuela { from { transform: translate(-12%, 10%) scale(0.9); opacity: 0; } to { transform: none; opacity: 1; } }
+
+@media (max-width: 767.98px) {
+  .hero__fila { grid-template-columns: 1fr; }
+  .hero__escena { max-width: 15rem; order: -1; justify-self: start; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__lead, .hero__acciones, .linea > span, .orbita, .colibri { animation: aparece var(--m-100) ease both; animation-delay: 0s; }
+}

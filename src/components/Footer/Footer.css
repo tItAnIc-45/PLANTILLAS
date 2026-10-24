@@ -1,0 +1,10 @@
+.pie { background: var(--marino-900); color: #c6d3dc; border-top: 1px solid rgb(220 188 125 / 14%); font-size: var(--t-sec); }
+.pie__rejilla { display: grid; gap: 2rem; padding-block: 3rem 2rem; }
+@media (min-width: 48rem) { .pie__rejilla { grid-template-columns: 1.4fr 1fr 1fr; } }
+.pie__marca { display: grid; gap: 0.75rem; align-content: start; justify-items: start; }
+.pie__suave { color: #9fb0bd; }
+.pie__col { display: grid; gap: 0.625rem; align-content: start; }
+.pie__col h2 { color: var(--oro); font-size: var(--t-meta); font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.25rem; }
+.pie__col a { color: #fff; text-decoration: none; width: fit-content; }
+.pie__col a:hover { color: var(--oro); }
+.pie__legal { padding-block: 1.25rem; border-top: 1px solid rgb(220 188 125 / 14%); font-size: var(--t-meta); color: #9fb0bd; }

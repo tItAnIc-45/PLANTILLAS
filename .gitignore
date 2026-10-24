@@ -24,3 +24,7 @@ desktop.ini
 *.ntvs*
 *.njsproj
 *.sln
+
+# Build de Vite
+dist/
+.playwright-mcp/
