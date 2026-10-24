@@ -39,7 +39,7 @@ Cada cambio fusionado en `main` ejecuta `npm ci && npm run build` y publica `dis
 
 ## Cómo trabajar
 
-1. Crea una rama desde `main`: `feat/...`, `fix/...` o `docs/...`.
+1. Desde la rama develop subir sus cambios a mas tardar en viernes de cada semana.
 2. Haz tus cambios y confirma (commit) con un mensaje claro.
 3. Abre un Pull Request hacia `main`: explica qué cambia y qué pruebas hiciste.
 4. Otra persona, distinta de quien lo escribió, lo revisa. La líder lo fusiona.
