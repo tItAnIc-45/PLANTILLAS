@@ -1,0 +1,29 @@
+.tarjeta {
+  display: flex; flex-direction: column; width: 100%;
+  background: var(--superficie); border: 1px solid var(--linea); border-radius: 0.75rem; overflow: hidden; box-shadow: var(--sombra);
+  transition: border-color var(--m-200) var(--sale), transform var(--m-200) var(--sale);
+}
+@media (hover: hover) { .tarjeta:hover { border-color: var(--linea-fuerte); transform: translateY(-3px); } }
+.tarjeta__vista { position: relative; aspect-ratio: 16 / 10; background: var(--marino-800); border-bottom: 1px solid var(--linea); overflow: hidden; }
+.tarjeta__vista img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.marco { position: absolute; top: 0; left: 0; right: 0; height: 1.5rem; display: flex; align-items: center; gap: 0.35rem; padding-inline: 0.75rem; background: rgb(10 28 40 / 88%); z-index: 1; }
+.marco i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: rgb(220 188 125 / 55%); }
+.tarjeta__hueco { height: 100%; display: grid; place-content: center; justify-items: center; gap: 0.75rem; color: var(--oro); font-size: var(--t-sec); background: radial-gradient(ellipse at 50% 40%, #1b4058 0%, var(--marino-800) 70%); }
+.tarjeta__hueco span { color: #c6d3dc; }
+.tarjeta__superpuesto { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; border: 0; padding: 0; background: rgb(10 28 40 / 62%); opacity: 0; cursor: pointer; transition: opacity var(--m-200) var(--sale); }
+.tarjeta__superpuesto span { padding: 0.7rem 1.1rem; background: var(--oro); color: var(--marino-800); border-radius: 0.5rem; font: 500 var(--t-sec)/1 var(--fuente); }
+.tarjeta__superpuesto:focus-visible { opacity: 1; }
+@media (hover: hover) { .tarjeta__vista:hover .tarjeta__superpuesto { opacity: 1; } }
+@media (hover: none) { .tarjeta__superpuesto { display: none; } }
+
+.tarjeta__cuerpo { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem; flex: 1; }
+.etiqueta { font: 500 var(--t-meta)/1.4 var(--fuente); color: var(--oro-tinta); }
+.tarjeta h3 { font: 400 1.5rem/1.2 var(--fuente-titulo); color: var(--titulo); }
+.tarjeta__desc { color: var(--texto-suave); font-size: var(--t-sec); line-height: 1.55; }
+.tarjeta__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: auto; padding-top: 1rem; }
+.pendiente { font-size: var(--t-sec); color: var(--texto-suave); }
+
+@media (prefers-reduced-motion: reduce) {
+  .tarjeta { transition: none; }
+  .tarjeta:hover { transform: none; }
+}

@@ -1,0 +1,10 @@
+.filtros { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 1rem; margin-block: 1.5rem 2rem; }
+.filtros__chips { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+.chip {
+  min-height: 44px; padding: 0 1.1rem; font: 500 var(--t-sec)/1 var(--fuente);
+  color: var(--titulo); background: transparent; border: 1px solid var(--linea-fuerte); border-radius: 0.5rem; cursor: pointer;
+  transition: background-color var(--m-150) var(--sale), color var(--m-150) var(--sale), border-color var(--m-150) var(--sale);
+}
+.chip:hover { border-color: var(--titulo); }
+.chip[aria-pressed='true'] { background: var(--activo-fondo); border-color: var(--activo-fondo); color: var(--activo-texto); }
+.filtros__total { font-size: var(--t-sec); color: var(--texto-suave); }

@@ -1,0 +1,103 @@
+/* Tokens, reinicio y piezas compartidas por todos los componentes. */
+:root {
+  /* Marca TUPLUS (valores tomados de la web principal) */
+  --marino-900: #0a1c28;
+  --marino-800: #0c2231;
+  --marino-700: #122c3d;
+  --marino-500: #34495a;
+  --oro: #dcbc7d;
+  --oro-fuerte: #c8a354;
+  --oro-tinta: #76551d;     /* oro legible sobre fondo claro */
+  --papel: #f5f5f1;         /* 60%: fondo de la galería */
+  --superficie: #ffffff;    /* 30%: tarjetas */
+  --linea: rgb(18 44 61 / 12%);
+  --linea-fuerte: rgb(18 44 61 / 28%);
+  --texto: #182e40;
+  --texto-suave: #4a5b69;
+  --titulo: var(--marino-700);
+  --activo-fondo: var(--marino-700);
+  --activo-texto: #fff;
+  --btn-oscuro-fondo: var(--marino-700);
+  --btn-oscuro-texto: #fff;
+  --btn-oscuro-hover: #1b4058;
+
+  --fuente: 'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+  --fuente-titulo: Georgia, 'Times New Roman', serif;
+
+  /* Tipografía: 12 / 14 / 16 y pesos 400 / 500 / 600 */
+  --t-meta: 0.75rem;
+  --t-sec: 0.875rem;
+  --t-body: 1rem;
+
+  /* Movimiento */
+  --m-100: 100ms;
+  --m-150: 150ms;
+  --m-200: 200ms;
+  --m-300: 300ms;
+  --m-entrada: 600ms; /* excepción documentada: solo la entrada de la portada */
+  --sale: cubic-bezier(0.16, 1, 0.3, 1);
+  --entra: cubic-bezier(0.7, 0, 0.84, 0);
+
+  --ancho: 76rem;
+  --sombra: 0 1px 3px rgb(18 44 61 / 6%);
+}
+
+/* Tema oscuro: invierte las superficies; marino y oro de marca se conservan */
+:root[data-tema='oscuro'] {
+  --papel: #0a1c28;
+  --superficie: #122c3d;
+  --linea: rgb(255 255 255 / 12%);
+  --linea-fuerte: rgb(255 255 255 / 28%);
+  --texto: #e8eef2;
+  --texto-suave: #a9b9c5;
+  --oro-tinta: #dcbc7d;
+  --titulo: #f2f5f7;          /* títulos y texto de marca sobre fondo oscuro */
+  --activo-fondo: #dcbc7d;    /* chip y botón activos */
+  --activo-texto: #0c2231;
+  --btn-oscuro-fondo: #dcbc7d;
+  --btn-oscuro-texto: #0c2231;
+  --btn-oscuro-hover: #e6cb92;
+  color-scheme: dark;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body {
+  margin: 0;
+  font: 400 var(--t-body)/1.55 var(--fuente);
+  color: var(--texto);
+  background: var(--papel);
+  -webkit-font-smoothing: antialiased;
+}
+img { display: block; max-width: 100%; }
+h1, h2, h3, p { margin: 0; }
+button, a { -webkit-tap-highlight-color: transparent; }
+:focus-visible { outline: 2px solid var(--oro-fuerte); outline-offset: 3px; }
+
+.contenedor { width: 100%; max-width: var(--ancho); margin-inline: auto; padding-inline: 1.25rem; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.saltar { position: absolute; left: 1rem; top: -4rem; z-index: 100; padding: 0.75rem 1rem; background: var(--oro); color: var(--marino-800); border-radius: 0.5rem; font-weight: 600; }
+.saltar:focus { top: 1rem; }
+
+/* ---------- Botones ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 44px; padding: 0 1.25rem;
+  font: 500 var(--t-sec)/1 var(--fuente);
+  border: 1px solid transparent; border-radius: 0.5rem;
+  cursor: pointer; text-decoration: none; white-space: nowrap;
+  transition: background-color var(--m-150) var(--sale), border-color var(--m-150) var(--sale), color var(--m-150) var(--sale);
+}
+.btn-dorado { background: var(--oro); color: var(--marino-800); }
+.btn-dorado:hover { background: #e6cb92; }
+.btn-oscuro { background: var(--btn-oscuro-fondo); color: var(--btn-oscuro-texto); }
+.btn-oscuro:hover { background: var(--btn-oscuro-hover); }
+.btn-claro { background: var(--superficie); color: var(--titulo); border-color: var(--linea-fuerte); }
+.btn-claro:hover:not(:disabled) { border-color: var(--titulo); }
+.btn:disabled { color: var(--texto-suave); opacity: 0.6; border-color: var(--linea); cursor: not-allowed; }
+
+@keyframes aparece { from { opacity: 0; } to { opacity: 1; } }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

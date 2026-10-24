@@ -1,0 +1,2 @@
+.marca { display: inline-flex; align-items: center; gap: 0.6rem; color: #fff; text-decoration: none; font: 600 1.375rem/1 var(--fuente); letter-spacing: -0.02em; min-height: 44px; }
+.marca i { color: var(--oro); font-style: normal; }
