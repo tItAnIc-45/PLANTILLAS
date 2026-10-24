@@ -41,7 +41,6 @@ Cada cambio fusionado en `main` ejecuta `npm ci && npm run build` y publica `dis
 
 1. Desde la rama develop subir sus cambios a mas tardar en viernes de cada semana.
 2. Haz tus cambios y confirma (commit) con un mensaje claro.
-3. Abre un Pull Request hacia `main`: explica qué cambia y qué pruebas hiciste.
-4. Otra persona, distinta de quien lo escribió, lo revisa. La líder lo fusiona.
+3. Otra persona, distinta de quien lo escribió, lo revisa. Y el encargado a mas tardar el sabado lo subira a main.
 
 Reglas: nadie sube directo a `main`; no se suben claves ni datos reales de clientes.
