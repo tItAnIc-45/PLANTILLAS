@@ -6,9 +6,6 @@
 // preview: imagen de la miniatura en src/assets (opcional).
 //
 // nivel: 1, 2 o 3. traduccion: ID base para reutilizar los textos traducidos.
-// Educación Nivel 2 queda pendiente: https://educacion-clases-nivel-2-two.vercel.app/
-// responde 200, pero /js/layout.js devuelve 404 (navbar sin verificar).
-// Publicar su URL solo después de corregir y validar la navegación.
 
 import abogados from '../assets/abogados.jpg';
 
@@ -52,9 +49,9 @@ export const PLANTILLAS = [
   ].flatMap(({ categoria, base, ids, nombre, descripcion }) => ids.map((id, i) => ({
     id, categoria, nivel: i + 2, nombre, descripcion,
     traduccion: base,
-    url: null,
+    url: id === 'tpl-008' ? 'https://educacion-clases-nivel-2-two.vercel.app/' : null,
     repo: null,
-    preview: null,
+    preview: id === 'tpl-008' ? `${import.meta.env.BASE_URL}previews/educacion-n2.png` : null,
   }))),
 ].sort((a, b) => CATEGORIAS.indexOf(a.categoria) - CATEGORIAS.indexOf(b.categoria) || a.nivel - b.nivel);
 
