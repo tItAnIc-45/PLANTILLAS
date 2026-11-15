@@ -10,8 +10,8 @@ const ICONOS = {
 export default function TarjetaPlantilla({ plantilla: p, onVistaPrevia }) {
   const { t } = usePreferencias();
   const lista = Boolean(p.url);
-  const nombre = t(`p.${p.id}.nombre`, undefined, p.nombre);
-  const descripcion = t(`p.${p.id}.desc`, undefined, p.descripcion);
+  const nombre = t(`p.${p.traduccion ?? p.id}.nombre`, undefined, p.nombre);
+  const descripcion = t(`p.${p.traduccion ?? p.id}.desc`, undefined, p.descripcion);
   return (
     <article className={`tarjeta${lista ? '' : ' tarjeta--pendiente'}`}>
       <div className="tarjeta__vista">
@@ -35,7 +35,10 @@ export default function TarjetaPlantilla({ plantilla: p, onVistaPrevia }) {
         )}
       </div>
       <div className="tarjeta__cuerpo">
-        <p className="etiqueta">{t(`cat.${p.categoria}`, undefined, p.categoria)}</p>
+        <div className="tarjeta__etiquetas">
+          <p className="etiqueta">{t(`cat.${p.categoria}`, undefined, p.categoria)}</p>
+          <span className="tarjeta__nivel">{t('tar.nivel', { n: p.nivel })}</span>
+        </div>
         <h3>{nombre}</h3>
         <p className="tarjeta__desc">{descripcion}</p>
         <div className="tarjeta__acciones">
@@ -47,6 +50,7 @@ export default function TarjetaPlantilla({ plantilla: p, onVistaPrevia }) {
           ) : (
             <>
               <button type="button" className="btn btn-claro" disabled>{t('tar.vista')}</button>
+              <button type="button" className="btn btn-oscuro" disabled>{t('tar.abrir')}</button>
               <span className="pendiente">{t('tar.pronto')}</span>
             </>
           )}
