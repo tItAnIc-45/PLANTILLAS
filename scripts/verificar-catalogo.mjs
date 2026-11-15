@@ -21,9 +21,12 @@ try {
 
   assert.equal(PLANTILLAS.length, 9);
   assert.equal(new Set(PLANTILLAS.map(p => p.id)).size, 9);
-  assert.equal(PLANTILLAS.find(p => p.categoria === 'Educación' && p.nivel === 2).url, null);
-  assert.equal(PLANTILLAS.filter(p => p.url).length, 2);
-  assert.equal(PLANTILLAS.filter(p => p.url === null).length, 7);
+  const educacionN2 = PLANTILLAS.find(p => p.categoria === 'Educación' && p.nivel === 2);
+  assert.equal(educacionN2.url, 'https://educacion-clases-nivel-2-two.vercel.app/');
+  assert.ok(educacionN2.preview.endsWith('/previews/educacion-n2.png'));
+  assert.deepEqual(PLANTILLAS.filter(p => p.url).map(p => p.id), ['tpl-001', 'tpl-003', 'tpl-008']);
+  assert.equal(PLANTILLAS.filter(p => p.url === null).length, 6);
+  assert.ok(PLANTILLAS.filter(p => p.url === null).every(p => p.preview === null));
 
   for (const { codigo } of IDIOMAS) {
     globalThis.localStorage = { getItem: key => key === 'tuplus-idioma' ? codigo : null };
@@ -62,8 +65,8 @@ try {
   }
   console.log('OK: 9 tarjetas y 9 IDs únicos; niveles 1–3 por categoría.');
   console.log('OK: filtros Todas/Abogados/Odontología/Educación y contadores 9/3/3/3.');
-  console.log('OK: 2 enlaces conservados, modales con su destino y apertura segura.');
-  console.log('OK: 7 pendientes con ambos botones desactivados; Educación N2 sin enlace.');
+  console.log('OK: 3 enlaces activos, incluido Educación N2 con captura local; modales y apertura segura.');
+  console.log('OK: 6 pendientes sin imágenes y con ambos botones desactivados.');
   console.log('OK: etiquetas, botones y filtros renderizados en los 8 idiomas.');
 } finally {
   delete globalThis.localStorage;
