@@ -291,6 +291,8 @@ export const TEXTOS = {
     'p.tpl-003.nombre': '教育与培训', 'p.tpl-003.desc': '适用于学院、机构和课程的落地页。',
   },
 };
+const NIVELES = { es: 'Nivel {n}', en: 'Level {n}', de: 'Stufe {n}', fr: 'Niveau {n}', pt: 'Nível {n}', ja: 'レベル {n}', ru: 'Уровень {n}', zh: '级别 {n}' };
+for (const [codigo, nivel] of Object.entries(NIVELES)) TEXTOS[codigo]['tar.nivel'] = nivel;
 // Campos y piezas extra de la sección de contacto.
 const CONTACTO_EXTRA = {
   es: {

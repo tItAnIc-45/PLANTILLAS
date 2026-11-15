@@ -18,6 +18,8 @@
 
 .tarjeta__cuerpo { display: flex; flex-direction: column; gap: 0.5rem; padding: 1.25rem; flex: 1; }
 .etiqueta { font: 500 var(--t-meta)/1.4 var(--fuente); color: var(--oro-tinta); }
+.tarjeta__etiquetas { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 0.5rem; }
+.tarjeta__nivel { padding: 0.25rem 0.6rem; border: 1px solid var(--oro-tinta); border-radius: 999px; color: var(--oro-tinta); font-size: var(--t-meta); white-space: nowrap; }
 .tarjeta h3 { font: 400 1.5rem/1.2 var(--fuente-titulo); color: var(--titulo); }
 .tarjeta__desc { color: var(--texto-suave); font-size: var(--t-sec); line-height: 1.55; }
 .tarjeta__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: auto; padding-top: 1rem; }

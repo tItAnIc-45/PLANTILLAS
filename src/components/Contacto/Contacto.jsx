@@ -18,7 +18,7 @@ const es = (clave) => TEXTOS.es[clave];
 
 export default function Contacto() {
   const { t } = usePreferencias();
-  const nombreDe = (p) => t(`p.${p.id}.nombre`, undefined, p.nombre);
+  const nombreDe = (p) => `${t(`p.${p.traduccion ?? p.id}.nombre`, undefined, p.nombre)} · ${t('tar.nivel', { n: p.nivel })}`;
   const [d, setD] = useState(INICIAL);
   const elegida = PLANTILLAS.find((p) => p.id === d.plantilla);
   const cambia = (e) => {

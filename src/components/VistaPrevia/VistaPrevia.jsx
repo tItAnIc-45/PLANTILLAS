@@ -4,7 +4,7 @@ import './VistaPrevia.css';
 
 export default function VistaPrevia({ plantilla: p, onCerrar }) {
   const { t } = usePreferencias();
-  const nombre = t(`p.${p.id}.nombre`, undefined, p.nombre);
+  const nombre = t(`p.${p.traduccion ?? p.id}.nombre`, undefined, p.nombre);
   const [movil, setMovil] = useState(false);
   const [cargando, setCargando] = useState(true);
   const cerrar = useRef(null);
@@ -36,7 +36,7 @@ export default function VistaPrevia({ plantilla: p, onCerrar }) {
       <div className="modal" role="dialog" aria-modal="true" aria-label={t('tar.vistaDe', { nombre })}>
         <div className="modal__barra">
           <div>
-            <p className="etiqueta">{t(`cat.${p.categoria}`, undefined, p.categoria)}</p>
+            <p className="etiqueta">{t(`cat.${p.categoria}`, undefined, p.categoria)} · {t('tar.nivel', { n: p.nivel })}</p>
             <h3>{nombre}</h3>
           </div>
           <div className="modal__controles">
