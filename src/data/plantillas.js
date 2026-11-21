@@ -49,7 +49,7 @@ export const PLANTILLAS = [
   ].flatMap(({ categoria, base, ids, nombre, descripcion }) => ids.map((id, i) => ({
     id, categoria, nivel: i + 2, nombre, descripcion,
     traduccion: base,
-    url: id === 'tpl-004' ? 'https://profesionales-abogados-nivel-2-gqhr.vercel.app/' : id === 'tpl-008' ? 'https://educacion-clases-nivel-2-two.vercel.app/' : null,
+    url: id === 'tpl-004' ? 'https://profesionales-abogados-nivel-2-gqhr.vercel.app/' : id === 'tpl-008' ? 'https://educacion-clases-nivel-2-two.vercel.app/' : id === 'tpl-009' ? 'https://educacion-clases-nivel3-tan.vercel.app/' : null,
     repo: null,
     preview: id === 'tpl-008' ? `${import.meta.env.BASE_URL}previews/educacion-n2.png` : null,
   }))),
