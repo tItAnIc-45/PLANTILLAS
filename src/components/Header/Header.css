@@ -20,8 +20,39 @@
 .cabecera__tema:hover { border-color: var(--oro); background: rgb(255 255 255 / 14%); }
 
 @media (max-width: 767.98px) {
-  .cabecera__nav > a:not(.btn), .solo-escritorio { display: none; }
-  .cabecera .btn { padding-inline: 0.9rem; }
+  .cabecera__fila {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.5rem;
+    padding-block: 0.65rem;
+  }
+
+  .cabecera__fila > *:first-child {
+    align-self: flex-start;
+  }
+
+  .cabecera__nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .cabecera__nav > a:not(.btn),
+  .solo-escritorio {
+    display: none;
+  }
+
+  .cabecera .btn {
+    padding-inline: 0.75rem;
+    white-space: nowrap;
+  }
+
+  .cabecera__tema {
+    padding-inline: 0.75rem;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
