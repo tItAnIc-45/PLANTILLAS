@@ -3,10 +3,10 @@
   background: var(--superficie); border: 1px solid var(--linea); border-radius: 0.75rem; overflow: hidden; box-shadow: var(--sombra);
   transition: border-color var(--m-200) var(--sale), transform var(--m-200) var(--sale);
 }
-@media (hover: hover) { .tarjeta:hover { border-color: var(--linea-fuerte); transform: translateY(-3px); } }
-.tarjeta__vista { position: relative; aspect-ratio: 16 / 10; background: var(--marino-800); border-bottom: 1px solid var(--linea); overflow: hidden; }
-.tarjeta__vista img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
-.marco { position: absolute; top: 0; left: 0; right: 0; height: 1.5rem; display: flex; align-items: center; gap: 0.35rem; padding-inline: 0.75rem; background: rgb(10 28 40 / 88%); z-index: 1; }
+@media (hover: hover) { .tarjeta:hover { border-color: var(--linea-fuerte); transform: translateY(-3px); box-shadow: var(--sombra), 0 0 22px rgba(247, 208, 130, 0.55), 0 0 38px rgba(247, 208, 130, 0.55); } }
+.tarjeta__vista { position: relative; display: flex; flex-direction: column; aspect-ratio: 16 / 10; background: var(--marino-900); border-bottom: 1px solid var(--linea); overflow: hidden; }
+.tarjeta__vista img { width: 100%; height: 100%; flex: 1; min-height: 0; object-fit: contain; object-position: center top; background: var(--marino-900); }
+.marco { position: relative; flex-shrink: 0; height: 1.5rem; display: flex; align-items: center; gap: 0.35rem; padding-inline: 0.75rem; background: var(--marino-900); border-bottom: 1px solid rgb(255 255 255 / 8%); z-index: 1; }
 .marco i { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: rgb(220 188 125 / 55%); }
 .tarjeta__hueco { height: 100%; display: grid; place-content: center; justify-items: center; gap: 0.75rem; color: var(--oro); font-size: var(--t-sec); background: radial-gradient(ellipse at 50% 40%, #1b4058 0%, var(--marino-800) 70%); }
 .tarjeta__hueco span { color: #c6d3dc; }
