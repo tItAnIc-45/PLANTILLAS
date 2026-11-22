@@ -51,7 +51,7 @@ export const PLANTILLAS = [
     traduccion: base,
     url: id === 'tpl-004' ? 'https://profesionales-abogados-nivel-2-gqhr.vercel.app/' : id === 'tpl-005' ? 'https://profesionales-abogados-nivel-3.vercel.app/' : id === 'tpl-008' ? 'https://educacion-clases-nivel-2-two.vercel.app/' : id === 'tpl-009' ? 'https://educacion-clases-nivel3-tan.vercel.app/' : null,
     repo: null,
-    preview: id === 'tpl-008' ? `${import.meta.env.BASE_URL}previews/educacion-n2.png` : null,
+    preview: id === 'tpl-004' ? `${import.meta.env.BASE_URL}previews/abogados-n2.png` : id === 'tpl-008' ? `${import.meta.env.BASE_URL}previews/educacion-n2.png` : null,
   }))),
 ].sort((a, b) => CATEGORIAS.indexOf(a.categoria) - CATEGORIAS.indexOf(b.categoria) || a.nivel - b.nivel);
 
